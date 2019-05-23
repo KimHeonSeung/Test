@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>원숭's 계산기</title>
+
+<style>
+        table {
+            border-collapse: collapse;
+            width: 300px;
+            height: 500px;
+        }
+        button {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+        input {
+            text-align: left;
+            border: none;
+        }
+        input:focus {
+            outline: none;
+        }
+</style>
+<script src="js/jquery.js"></script>
+<script type="text/javascript">
+
+	// 전역변수 선언
+	var n1 = "";
+	var n2 = "";
+	var result = "";
+	var op = "";
+	
+	// 식 뒤에 내가 누른 것을 추가해주는 메소드 선언
+	function addition(char) {
+		// process 부분의 식을 가져와서 ing 변수에 넣어준다.
+		var ing = document.getElementById('process');
+		// 진행중인 식 process에 char를 추가해준다.
+		
+		if (process.value == "0" && char == "0") { // 0이 입력되었을 때 또 0이 변수로 들어오면
+			process.value = char;
+		} else if (process.value == "0" && char != "0") { // 0이 입력되었을 때 또 0이 아닌 수가 변수로 들어오면
+			process.value = char;
+		} else if (char == "+") {
+			if (process.value.indexOf(char) == -1) {
+				n1 = parseFloat(process.value);
+				process.value += char;
+			} else {
+				n2 = parseInt(process.value.substring(process.value.indexOf(char)+1, process.value.length));
+				result = parseFloat(n1) + parseFloat(n2);
+				if(result == NaN){
+					return;
+				}
+				$("#result").val(result);
+			}
+		} else if (char == "-") {
+			if (process.value.indexOf(char) == -1) {
+				n1 = parseFloat(process.value);
+				process.value += char;
+			} else {
+				n2 = parseFloat(process.value.substring(process.value.indexOf(char)+1, process.value.length));
+				result = parseFloat(n1) - parseFloat(n2);
+				if(result == NaN){
+					return;
+				}
+				$("#result").val(result);
+			}
+		} else if (char == "*") {
+			if (process.value.indexOf(char) == -1) {
+				n1 = parseFloat(process.value);
+				process.value += char;
+			} else {
+				n2 = parseFloat(process.value.substring(process.value.indexOf(char)+1, process.value.length));
+				result = parseFloat(n1) * parseFloat(n2);
+				if(result == NaN){
+					return;
+				}
+				$("#result").val(result);
+			}
+		} else if (char == "/") {
+			if (process.value.indexOf(char) == -1) {
+				n1 = parseFloat(process.value);
+				process.value += char;
+			} else {
+				n2 = parseFloat(process.value.substring(process.value.indexOf(char)+1, process.value.length));
+				result = parseFloat(n1) / parseFloat(n2);
+				if(result == NaN){
+					return;
+				}
+				$("#result").val(result);
+			}
+		} else {
+			process.value += char;
+		};
+	};
+
+	
+	// reset을 눌렀을 때 식과 계산 결과를 초기화 하기 위한 메소드 선언
+	function reset() {
+		document.getElementById('process').value = "";
+		document.getElementById('result').value = "";
+		n1 = "";
+		n2 = "";
+		result = "";
+	}
+	
+$(function () {
+	$("#seven").on("click", function() {
+		addition($(this).val());
+	});
+	$("#eight").on("click", function() {
+		addition($(this).val());
+	});
+	$("#nine").on("click", function() {
+		addition($(this).val());
+	});
+	$("#multiple").on("click", function() {
+		addition($(this).val());
+	});
+	$("#four").on("click", function() {
+		addition($(this).val());
+	});
+	$("#five").on("click", function() {
+		addition($(this).val());
+	});
+	$("#six").on("click", function() {
+		addition($(this).val());
+	});
+	$("#minus").on("click", function() {
+		addition($(this).val());
+	});
+	$("#one").on("click", function() {
+		addition($(this).val());
+	});
+	$("#two").on("click", function() {
+		addition($(this).val());
+	});
+	$("#three").on("click", function() {
+		addition($(this).val());
+	});
+	$("#plus").on("click", function() {
+		addition($(this).val());
+	});
+	$("#zero").on("click", function() {
+		addition($(this).val());
+	});
+	$("#dot").on("click", function() {
+		addition($(this).val());
+	});
+	$("#equal").on("click", function() {
+		$("#result").val(result);
+	});
+	
+	
+});
+
+</script>    
+    
+</head>
+<body>
+    <table border="1">
+    <tr>
+        <td colspan="4">
+            <input type="text" id="process">
+        </td>
+    </tr>
+    <tr>
+        <td colspan="4">
+            <input type="text" id="result">
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3"> <button onclick="reset()">AC</button></td>
+        <td><button id = "divide" value = "/">/</button></td>
+    </tr>
+    <tr>
+        <td><button id = "seven" value = "7">7</button></td>
+        <td><button id = "eight" value = "8">8</button></td>
+        <td><button id = "nine" value = "9">9</button></td>
+        <td><button id = "multiple" value = "*">*</button></td>
+    </tr>
+    <tr>
+        <td><button id = "four" value = "4">4</button></td>
+        <td><button id = "five" value = "5">5</button></td>
+        <td><button id = "six" value = "6">6</button></td>
+        <td><button id = "minus" value = "-">-</button></td>
+    </tr>
+    <tr>
+        <td><button id = "one" value = "1">1</button></td>
+        <td><button id = "two" value = "2">2</button></td>
+        <td><button id = "three" value = "3">3</button></td>
+        <td><button id = "plus" value = "+">+</button></td>
+    </tr>
+    <tr>
+        <td colspan="2"><button id = "zero">0</button></td>
+        <td><button id = "dot" value = ".">.</button></td>
+        <td><button id = "equal" value = "=">=</button></td>
+    </tr>
+</table>
+
+</body>
+</html>
