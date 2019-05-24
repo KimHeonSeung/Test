@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>계산기</title>
+<link rel="stylesheet" type="text/css" href="calculator.css">
+<script src="../js/jquery.js"></script>
+<script type="text/javascript" src="calculator.js"></script>
+
+</head>
+<body>
+<article>
+	<table>
+		<tr class="temp">
+			<td class="temp" colspan="5"><p id="progress" class="resultP temp"></p></td>
+		</tr>
+		
+		<tr class="temp">
+			<td class="temp" colspan="5"><p id="output" class="resultP temp">0</p></td>
+		</tr>
+		
+		<tr>
+			<td><button id="7">7</button></td><td><button id="8">8</button></td><td><button id="9">9</button></td><td><button id="div">/</button></td><td><button id="mod">%</button></td>
+		</tr>
+		
+		<tr>
+			<td><button id="4">4</button></td><td><button id="5">5</button></td><td><button id="6">6</button></td><td><button id="multi">*</button></td><td><button id="c">c</button></td>
+		</tr>
+		
+		<tr>
+			<td><button id="1">1</button></td><td><button id="2">2</button></td><td><button id="3">3</button></td><td><button id="minus">-</button></td><td rowspan="2"><button id="equal">=</button></td>
+		</tr>
+		
+		<tr>
+			<td colspan="2"><button id="0">0</button></td><td><button id="dot">.</button></td><td><button id="plus">+</button></td>
+		</tr>
+	</table>
+</article>
+</body>
+</html>

@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+button{
+	border-radius: 5px;
+	box-shadow:2px 2px 2px 0.2px gray;
+	width:40px;
+	height:40px;
+	background-color: #e0f1f5;
+}
+
+article{
+	margin: 70px;
+	border-radius: 10px;;
+	width: 300px;
+	padding: 5px;
+	background-color: #96d2d6;
+}
+
+table{
+	margin: 40px;
+	padding: 40px;
+	border-collapse: collapse;
+	
+}
+ 
+td[colspan='2'] button {
+	width:90px;
+}
+
+td[rowspan='2'] button {
+	height:90px;
+}
+
+.resultP{
+	
+	width:230px;
+	height:40px;
+	background:gray;
+	text-align: right;
+}
+
+
+
+.temp{
+	margin-top:0px;
+	padding-top:0px;
+	margin-bottom:0px;
+	padding-bottom:0px;
+}
+
+#progress{
+	border-radius: 8px 8px 0px 0px;
+	font-size:86%;
+}
+
+#output{
+	border-radius: 0px 0px 8px 8px;
+}

@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+table{
+	margin: 0px auto;
+	width: 250px;
+	background-color: #A9D0F5;
+}
+
+td{
+	text-align: center;
+}
+
+button{
+	width: 40px;
+	height: 100%;
+	background-color: #E0ECF8;
+}
+
+#zero{
+	width: 100%;
+}
+
+.result{
+	height: 50px;
+}
+
+p{
+	text-align: center;
+	margin: 0px auto;
+}
+
+input{
+	width: 250px;
+	background-color: #E0E6F8;
+}
+
+textarea {
+	width: 250px;
+	background-color: #E0E6F8;
+	margin-top: 100px;
+}

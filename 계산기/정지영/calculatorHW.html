@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>계산기</title>
+<script src="../js/jquery.js"></script>
+<link rel="stylesheet" type="text/css" href="./style.css">
+<script>
+
+
+$(function () {
+	var input="";
+	var expSrc="";
+	var isResult = false;
+	var isFraction_Sqrt = false;
+	function calculate() {
+		var res = eval(expSrc);
+		$("ul").append("<li>"+expSrc+"</li>");
+		expSrc = "";
+		input = "0";
+		
+		$("#result_txt").text(res);
+		$("#expression").text(expSrc);
+		isResult = true;
+	}
+	$(".op_change").click(function () {
+		var sign = input.substring(0,1);
+		if(sign == "-"){
+			input = input.substring(1,input.length);
+		} else {
+			input = "-"+input;
+		}
+		$("#result_txt").text(input);
+	});
+	$(".fraction").click(function () {
+		var res = eval("1/"+input);
+		input = res;
+		isFraction_Sqrt = true;
+		$("#result_txt").text(res);
+	});
+	$(".sqrt").click(function () {
+		var res = Math.sqrt(input);
+		input = res;
+		isFraction_Sqrt = true;
+		$("#result_txt").text(res);
+	});
+	$(".func_back").click(function () {
+		// 한글자 지우기
+		input = input.substring(0, input.length - 1);
+		$("#result_txt").text(input);
+	});
+	$(".fun_clear").click(function () {
+		input = "0";
+		$("#result_txt").text(input);
+		isResult = false;
+	});
+	$(".fun_clear_all").click(function () {
+		expSrc = "";
+		input = "0";
+		$("#result_txt").text(input);
+		$("#expression").text(expSrc);
+		isResult = false;
+	});
+	$(".op").click(function () {
+		// 이때  input의 값을 수식부분으로 넘겨주기.
+		$("#expression").text(input);
+		expSrc += input;
+		var operator = $(this).text();
+		
+		switch(operator){
+		case "+":
+			expSrc += "+";	 break;
+		case "-":
+			expSrc += "-";	 break;
+			
+		case "*":
+			expSrc += "*";	 break;
+			
+		case "/":
+			expSrc += "/";	 break;
+			
+		case "%":
+			expSrc += "%";	 break;
+		case "=":
+			calculate();	return;
+		}
+		
+		input = "";
+		
+		$("#result_txt").text("0");
+		$("#expression").text(expSrc);
+	});
+	$(".num").click(function () {// 숫자랑 dot
+		var expression = $(this).text();
+		var txt = $("#result_txt").text();
+		if(isResult){
+			txt = "0";
+			isResult = false;
+		}
+		else if(isFraction_Sqrt){
+			txt = "0";
+			isFraction_Sqrt = false;
+		}
+		if(expression){
+			if(expression == ".")
+				input = txt+".";
+			else if(txt == "0"){
+				input = expression;
+			} else {
+				input = txt + expression ;
+			}
+			
+			$("#result_txt").text(input);
+		}
+	});
+	
+	$(document).on("keydown", function (e) {
+		var expresssion = $(this).text();
+		switch(e.keyCode) {
+		case 48:
+			expression = "0";	break;
+		case 49:
+			expression = "1";	break;
+		case 50:
+			expression = "2";	break;
+		case 51:
+			expression = "3";	break;
+		case 52:
+			expression = "4";	break;
+		case 53:
+			expression = "5";	break;
+		case 54:
+			expression = "6";	break;
+		case 55:
+			expression = "7";	break;
+		case 56:
+			expression = "8";	break;
+		case 57:
+			expression = "9";	break;
+		case 96:
+			expression = "0";	break;
+		case 97:
+			expression = "1";	break;
+		case 98:
+			expression = "2";	break;
+		case 99:
+			expression = "3";	break;
+		case 100:
+			expression = "4";	break;
+		case 101:
+			expression = "5";	break;
+		case 102:
+			expression = "6";	break;
+		case 103:
+			expression = "7";	break;
+		case 104:
+			expression = "8";	break;
+		case 105:
+			expression = "9";	break;
+		case 187:
+			expSrc += input;
+			calculate();		return;
+		case 107:
+			expression = "+";	break;
+		case 109:
+			expression = "-";	break;
+		case 189:
+			expression = "-";	break;
+		case 106:
+			expression = "*";	break;
+		case 111:
+			expression = "/";	break;
+		case 110:
+			expression = ".";	break;
+		case 13://enter
+			expSrc += input;
+			calculate();		return;
+			
+		}
+		
+		if(expression == "+" || expression == "-" || expression == "*" || expression == "/"){
+			$("#expression").text(input);
+			expSrc += input;
+			expSrc += expression;
+			input = "";
+			
+			$("#result_txt").text("0");
+			$("#expression").text(expSrc);
+		}
+		else{
+			var txt = $("#result_txt").text();
+			if(isResult){
+				txt = "0";
+				isResult = false;
+			}
+			else if(isFraction_Sqrt){
+				txt = "0";
+				isFraction_Sqrt = false;
+			}
+			if(expression){
+				if(expression == ".")
+					input = txt+".";
+				else if(txt == "0"){
+					input = expression;
+				} else {
+					input = txt + expression ;
+				}
+				
+				$("#result_txt").text(input);
+			}
+		}
+	});
+});
+</script>
+<style>
+table {
+	text-align: center;
+}
+table.td {
+	width : 50px;
+	height : 25px;
+
+}
+button {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	display:block;
+	background-color: #faebd7;
+} 
+td.ul.li{
+	width: 50px;
+	text-align: right;
+} 
+</style>
+</head>
+<body>
+
+	<div id="wrap">
+		<table cellspacing="2" border="1" id="tb">
+			<tr>
+				<td colspan="5" style="height: 50px; border-left: 0px; border-right: 0px;">
+					<ul style="list-style: none; font-size: 10px; text-align: right; height: 100%; overflow: scroll;">
+						
+					</ul>
+				</td>
+			</tr>
+			<tr>		
+				<td colspan="5" id = "expression" style="text-align: right; height: 25px; font-size:10px; border-bottom: 0px; 
+										border-left: 0px; border-right: 0px;"></td>			
+			</tr>
+			<tr>		
+				<td colspan="5" id = "result_txt" style="text-align: right; height: 25px; border-top: 0px;
+												border-left: 0px; border-right: 0px;">0</td>			
+			</tr>
+			
+			<tr>
+				<td><button class="func_back" id="back">←</button></td>
+				<td><button class="fun_clear" id ="clear">CE</button></td>
+				<td><button class="fun_clear_all" id ="clear_all">C</button></td>
+				<td><button class="op_change" id ="op_change">+-</button></td>
+				<td><button class="sqrt" id="sqrt_id">V</button></td>
+			</tr>
+
+			<tr>
+				<td><button class="num" id = "seven">7</button></td>
+				<td><button class="num" id = "eight">8</button></td>
+				<td><button class="num" id = "nine">9</button></td>
+				<td><button class="op" id = "op_divide">/</button></td>
+				<td><button class="op" id = "op_left">%</button></td>
+			</tr>
+
+			<tr>
+				<td><button class="num" id = "four">4</button></td>
+				<td><button class="num" id = "five">5</button></td>
+				<td><button class="num" id = "six">6</button></td>
+				<td><button class="op" id = "op_mul">*</button></td>
+				<td><button class="fraction" id = "fraction_id">1/x</button></td>
+			</tr>
+			<tr>
+				<td><button class="num" id = "one">1</button></td>
+				<td><button class="num" id = "two">2</button></td>
+				<td><button class="num" id = "three">3</button></td>
+				<td><button class="op" id = "op_sub">-</button></td>
+				<td rowspan="2"><button class="op" id = "op_res" style="height: 100px">=</button></td>
+			</tr>
+
+			<tr>
+				<td colspan="2"><button class="num" id = "zero">0</button></td>
+				<td><button class="num" id = "dot">.</button></td>
+				<td><button class="op" id = "op_add">+</button></td>
+			</tr>
+			
+		</table>
+
+	</div>
+
+</body>
+</html>
